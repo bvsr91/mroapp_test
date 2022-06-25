@@ -1,5 +1,6 @@
 using ferrero.mro as my from '../db/data-model';
 
+@requires: 'authenticated-user'
 service MroService {
     // @readonly
     entity Roles as projection on my.Roles;

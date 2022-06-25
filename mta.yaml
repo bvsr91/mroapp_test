@@ -1,4 +1,4 @@
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: mroapp
 description: A simple CAP project.
 version: 1.0.0
@@ -8,10 +8,11 @@ modules:
     path: gen/srv
     requires:
       - name: mroapp-db
+      - name: uaa_mroapp
     provides:
       - name: srv-api
         properties:
-          srv-url: '${default-url}'
+          srv-url: "${default-url}"
     parameters:
       buildpack: nodejs_buildpack
     build-parameters:
@@ -23,28 +24,30 @@ modules:
       - name: mroapp-db
     parameters:
       buildpack: nodejs_buildpack
+    build-parameters:
+      ignore: ["default-env.json", ".env"]
   - name: app
     type: approuter.nodejs
     path: app
     requires:
-      - name: mroapp_html_repo_runtime
+      # - name: mroapp_html_repo_runtime
       - name: uaa_mroapp
       - name: srv-api
         group: destinations
         properties:
           name: srv-api
-          url: '~{srv-url}'
+          url: "~{srv-url}"
           forwardAuthToken: true
     parameters:
       disk-quota: 256M
       memory: 256M
-  - name: mroapp_ui_deployer
-    type: com.sap.application.content
-    path: .
-    requires:
-      - name: mroapp_html_repo_host
-        parameters:
-          content-target: true
+  # - name: mroapp_ui_deployer
+  #   type: com.sap.application.content
+  #   path: .
+  #   requires:
+  #     - name: mroapp_html_repo_host
+  #       parameters:
+  #         content-target: true
 resources:
   - name: mroapp-db
     type: com.sap.xs.hdi-container
@@ -52,12 +55,12 @@ resources:
       service: hana
       service-plan: hdi-shared
     properties:
-      hdi-service-name: '${service-name}'
-  - name: mroapp_html_repo_runtime
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-runtime
+      hdi-service-name: "${service-name}"
+  # - name: mroapp_html_repo_runtime
+  #   type: org.cloudfoundry.managed-service
+  #   parameters:
+  #     service: html5-apps-repo
+  #     service-plan: app-runtime
   - name: uaa_mroapp
     type: org.cloudfoundry.managed-service
     parameters:
@@ -65,13 +68,13 @@ resources:
       service: xsuaa
       service-name: mroapp-xsuaa-service
       service-plan: application
-  - name: mroapp_html_repo_host
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-host
-parameters:
-  enable-parallel-deployments: true
+#   - name: mroapp_html_repo_host
+#     type: org.cloudfoundry.managed-service
+#     parameters:
+#       service: html5-apps-repo
+#       service-plan: app-host
+# parameters:
+#   enable-parallel-deployments: true
 build-parameters:
   before-all:
     - builder: custom
