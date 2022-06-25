@@ -2,7 +2,7 @@
     "authenticationMethod": "route",
     "routes": [
         {
-            "source": "/catalog/(.*)",
+            "source": "/mro/(.*)",
             "destination": "srv-api",
             "csrfProtection": true,
             "authenticationType": "xsuaa"
