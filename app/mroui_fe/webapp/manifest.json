@@ -97,6 +97,9 @@
                     "autoExpandSelect": true,
                     "earlyRequests": true
                 }
+            },
+            "userModel": {
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
         "resources": {

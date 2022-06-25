@@ -37,14 +37,22 @@ sap.ui.define([
 
         },
         getUser: async function () {
-            try {
-                const model = this.getOwnerComponent().getModel("userapi")
-                const info = await $.get(model.sServiceUrl + '/attributes')
-                return info.user_name
-            } catch (err) {
-                console.log(err)
-                return 'Anonymous' // DEBUG
-            }
+            // try {
+            //     const model = this.getOwnerComponent().getModel("userapi")
+            //     const info = await $.get(model.sServiceUrl + '/attributes')
+            //     return info.user_name
+            // } catch (err) {
+            //     console.log(err)
+            //     return 'Anonymous' // DEBUG
+            // }
+            this._userModel = this.getOwnerComponent().getModel("userModel");
+            let me = this;
+            fetch("/getUserInfo")
+                .then(res => res.json())
+                .then(data => {
+                    me._userModel.setProperty("/", data);
+                })
+                .catch(err => console.log(err));
         },
 
         /* =========================================================== */
