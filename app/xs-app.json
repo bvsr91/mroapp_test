@@ -1,11 +1,18 @@
 {
+    "welcomeFile": "/mroui_fe/webapp/index.html",
     "authenticationMethod": "route",
+    "logout": {
+        "logoutEndpoint": "/do/logout"
+    },
     "routes": [
         {
             "source": "/mro/(.*)",
             "destination": "srv-api",
             "csrfProtection": true,
-            "authenticationType": "xsuaa"
+            "authenticationType": "xsuaa",
+            "scope": [
+                "$XSAPPNAME.mroAppScope"
+            ]
         },
         {
             "source": "^/user-api(.*)",
