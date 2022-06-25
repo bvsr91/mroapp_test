@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="MroService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Roles" EntityType="MroService.Roles"/>
+                <EntitySet Name="Users" EntityType="MroService.Users">
+                    <NavigationPropertyBinding Path="role" Target="Roles"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Roles">
+                <Key>
+                    <PropertyRef Name="role"/>
+                </Key>
+                <Property Name="role" Type="Edm.String" Nullable="false"/>
+                <Property Name="description" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Users">
+                <Key>
+                    <PropertyRef Name="user"/>
+                </Key>
+                <Property Name="user" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="role" Type="MroService.Roles">
+                    <ReferentialConstraint Property="role_role" ReferencedProperty="role"/>
+                </NavigationProperty>
+                <Property Name="role_role" Type="Edm.String"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
