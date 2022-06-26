@@ -11,7 +11,7 @@
 
         <semantic:titleHeading>
             <Title
-                text="User: {userModel>/decodeJwtTooken/given_name}"
+                text="{userModel>/decodeJwtTooken/given_name}"
                 level="H2"/>
         </semantic:titleHeading>
 
