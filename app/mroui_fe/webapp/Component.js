@@ -7,7 +7,7 @@ sap.ui.define([
 
     return UIComponent.extend("com.ferre.mrouife.Component", {
 
-        metadata : {
+        metadata: {
             manifest: "json"
         },
 
@@ -17,7 +17,7 @@ sap.ui.define([
          * @public
          * @override
          */
-        init : function () {
+        init: function () {
             // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
 
@@ -26,6 +26,7 @@ sap.ui.define([
 
             // create the views based on the url/hash
             this.getRouter().initialize();
+            this.validateUser();
         },
 
         /**
@@ -34,7 +35,7 @@ sap.ui.define([
          * @public
          * @override
          */
-        destroy : function () {
+        destroy: function () {
             // this._oErrorHandler.destroy();
             // call the base component's destroy function
             UIComponent.prototype.destroy.apply(this, arguments);
@@ -46,7 +47,7 @@ sap.ui.define([
          * @public
          * @return {string} css class, either 'sapUiSizeCompact' or 'sapUiSizeCozy' - or an empty string if no css class should be set
          */
-        getContentDensityClass : function() {
+        getContentDensityClass: function () {
             if (this._sContentDensityClass === undefined) {
                 // check whether FLP has already set the content density class; do nothing in this case
                 // eslint-disable-next-line sap-no-proprietary-browser-api
@@ -60,6 +61,44 @@ sap.ui.define([
                 }
             }
             return this._sContentDensityClass;
+        },
+        validateUser: function () {
+            var oModel = this.getModel("mrosrv_v2");
+            oModel.read("/CheckUserRole", {
+                success: function (oData) {
+                    console.log("odata: ", oData);
+                    if (oData.results.length === 0) {
+                        this.showNotFound();
+                    } else {
+                        if (this.getRouter().getHashChanger().getHash() === "notFound") {
+                            this.getRouter().navTo("search");
+                        }
+                        this.getModel("userModel").setProperty("/role", oData.results[0]);
+                    }
+                }.bind(this),
+                error: function (error) {
+                    this.showNotFound();
+                }.bind(this)
+            });
+        },
+        showNotFound: function () {
+            this.getModel("side").setProperty("/navigation", []);
+            this.getRouter().navTo("notFound");
+            // var sPath = "com.ferre.mrouife.view.fragments.notFound";
+            // if (!this.NotFoundDialog) {
+            // 	this.NotFoundDialog = sap.ui.xmlfragment(sPath, this);
+            // 	//this.getView().addDependent(this.NotFoundDialog);
+            // }
+            // this.NotFoundDialog.open();
+            // this.NotFoundDialog.attachBrowserEvent("keydown", function (e) {
+            // 	if ((e.which === 27) || (e.which === 32)) {
+            // 		return false;
+            // 	}
+            // });
+            // var title = this.getModel("i18n").getResourceBundle().getText("notFound");
+            // sap.ui.getCore().byId("titleText").setText(title);
+            // var message = this.getModel("i18n").getResourceBundle().getText("notFound.text");
+            // sap.ui.getCore().byId("nameText").setText(message);
         }
 
     });

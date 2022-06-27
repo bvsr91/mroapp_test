@@ -160,6 +160,10 @@
                     "name": "myInbox",
                     "pattern": "myInbox",
                     "target": "myInbox"
+                  },{
+                    "name": "notFound",
+                    "pattern": "notFound",
+                    "target": "notFound"
                   }
             ],
             "targets": {
@@ -195,6 +199,13 @@
                     "viewName": "Search",
                     "viewType": "XML",
                     "viewId": "Search",
+                    "clearControlAggregation": false,
+                    "transition": "show"
+                  },
+                  "notFound": {
+                    "viewName": "NotFound",
+                    "viewType": "XML",
+                    "viewId": "NotFound",
                     "clearControlAggregation": false,
                     "transition": "show"
                   }

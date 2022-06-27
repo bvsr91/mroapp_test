@@ -47,7 +47,7 @@ sap.ui.define(
                 fetch("/getUserInfo")
                     .then(res => res.json())
                     .then(data => {
-                        me._userModel.setProperty("/", data);
+                        me._userModel.setProperty("/jwtData", data);
                     })
                     .catch(err => console.log(err));
             },

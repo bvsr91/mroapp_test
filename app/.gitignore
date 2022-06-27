@@ -7,3 +7,5 @@ package-lock.json
 
 # auto generated wildcard
 mroapp_test/db/.env
+# auto generated wildcard
+mroapp_test/.env1

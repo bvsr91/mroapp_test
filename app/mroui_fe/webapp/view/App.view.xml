@@ -14,9 +14,9 @@
                 <!-- <SearchField width="10rem"/> -->
                 <ToolbarSpacer />
                 <Title
-                text="{userModel>/decodeJwtTooken/given_name}"
+                text="{userModel>/jwtData/decodeJwtTooken/given_name}"
                 level="H2"/>
-                <Title text="{visibility>/roleName}"/>
+                <Title text="Role: {userModel>/role/role_role}" class="sapUiMediumMarginBegin"/>
                 <!-- <Button press=".handleNotificationPress" icon="sap-icon://notification-2" type="Transparent" /> -->
                 <Button press=".onNotificationPress" icon="sap-icon://bell" type="Transparent">
 
