@@ -1,0 +1,44 @@
+{
+    "notificationListData": [
+        {
+            "title": "New Request(#1) Kindly Approve the Price conditions Entered",
+            "description": "Updated the price conditions based the Location",
+            "author": "Divya",
+            "priority": "Low",
+            "dateTime": "Yesterday",
+            "id":"5000123"
+        },
+        {
+            "title": "New Request(#4) Association in vendor List",
+            "description": "Updated The Association List",
+            "author": "Priya",
+            "priority": "High",
+            "dateTime": "Yesterday",
+            "id":"5900532"
+        },
+        {
+            "title": "New Request(#5) Kindly Approve the Price conditions Entered",
+            "description": "Updated the price conditions based the Location",
+            "author": "Madhavi",
+            "priority": "Low",
+            "dateTime": "Yesterday",
+            "id":"5000156"
+        },
+        {
+            "title": "New Request(#10) Kindly Approve the Price conditions Entered",
+            "description": "Updated the price conditions based the Location",
+            "author": "Srinivas",
+            "priority": "Low",
+            "dateTime": "07/06/2022",
+            "id":"5000456"
+        },
+        {
+            "title": "New Request(#15) Kindly Approve the Price conditions Entered",
+            "description": "Updated the price conditions based the Location",
+            "author": "Gangadhar",
+            "priority": "Low",
+            "dateTime": "Today",
+            "id":"5000125"
+        }
+    ]
+}

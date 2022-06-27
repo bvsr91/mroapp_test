@@ -7,7 +7,7 @@ modules:
     type: nodejs
     path: gen/srv
     requires:
-      - name: mroapp-db
+      - name: mroapp1-db
       - name: uaa_mroapp
     provides:
       - name: srv-api
@@ -21,7 +21,7 @@ modules:
     type: hdb
     path: db
     requires:
-      - name: mroapp-db
+      - name: mroapp1-db
     parameters:
       buildpack: nodejs_buildpack
     build-parameters:
@@ -49,7 +49,7 @@ modules:
   #       parameters:
   #         content-target: true
 resources:
-  - name: mroapp-db
+  - name: mroapp1-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana

@@ -1,26 +1,16 @@
-<mvc:View
-    controllerName="com.ferre.mrouife.controller.Worklist"
+<mvc:View controllerName="com.ferre.mrouife.controller.Search"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:semantic="sap.f.semantic">
-
-    <semantic:SemanticPage
-        id="page"
-        headerPinnable="false"
-        toggleHeaderOnTitleClick="false">
-
-        <semantic:titleHeading>
-            <Title
-                text="{userModel>/decodeJwtTooken/given_name}"
-                level="H2"/>
-        </semantic:titleHeading>
-
-        <semantic:content>
-            <Table
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout">
+    <l:VerticalLayout width="100%">
+        <l:content>
+        <Table
                 id="table"
                 width="auto"
                 items="{
-                    path: '/Roles',
+                    path: 'mrosrv_v2>/Roles',
                     sorter: {
                         path: 'role',
                         descending: false
@@ -36,7 +26,7 @@
                     <OverflowToolbar>
                         <Title
                             id="tableHeader"
-                            text="{worklistView>/worklistTableTitle}"
+                            text="Roles Table"
                             level="H3"/>
                         <ToolbarSpacer />
                         <SearchField
@@ -54,10 +44,10 @@
 
                 <columns>
                     <Column id="nameColumn">
-                        <Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+                        <Text text="Role" id="nameColumnTitle"/>
                     </Column>
                     <Column id="unitNumberColumn" hAlign="End">
-                        <Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+                        <Text text="Description" id="unitNumberColumnTitle"/>
                     </Column>
                 </columns>
 
@@ -67,13 +57,12 @@
                         press=".onPress">
                         <cells>
                             <ObjectIdentifier
-                                title="{role}"/>
-                            <ObjectNumber />
+                                title="{mrosrv_v2>role}"/>
+                            <Text text="{mrosrv_v2>description}" />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
-        </semantic:content>
-    </semantic:SemanticPage>
-
+        </l:content>
+    </l:VerticalLayout>
 </mvc:View>

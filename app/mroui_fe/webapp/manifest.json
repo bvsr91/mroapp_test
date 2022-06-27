@@ -100,6 +100,22 @@
             },
             "userModel": {
                 "type": "sap.ui.model.json.JSONModel"
+            },
+            "side": {
+              "type": "sap.ui.model.json.JSONModel",
+              "uri": "model/sideContent.json"
+            },
+            "vendorData": {
+              "type": "sap.ui.model.json.JSONModel",
+              "uri": "model/VendorData.json"
+            },
+            "pricingData": {
+              "type": "sap.ui.model.json.JSONModel",
+              "uri": "model/pricingData.json"
+            },
+            "notificationData": {
+              "type": "sap.ui.model.json.JSONModel",
+              "uri": "model/notificationData.json"
             }
         },
         "resources": {
@@ -110,7 +126,7 @@
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
                 "viewPath": "com.ferre.mrouife.view",
-                "controlId": "app",
+                "controlId": "mainContents",
                 "controlAggregation": "pages",
                 "bypassed": {
                     "target": [
@@ -121,41 +137,67 @@
             },
             "routes": [
                 {
+                    "name": "RouteApp",
+                    "pattern": "RouteApp",
+                    "target": ["TargetApp"]
+                  },
+                  {
+                    "name": "search",
                     "pattern": "",
-                    "name": "worklist",
-                    "target": [
-                        "worklist"
-                    ]
-                },
-                {
-                    "pattern": "Roles/{objectId}",
-                    "name": "object",
-                    "target": [
-                        "object"
-                    ]
-                }
+                    "target": "search"
+                  },
+                  {
+                    "name": "vendorList",
+                    "pattern": "vendorList",
+                    "target": "vendorList"
+                  },
+                  {
+                    "name": "pricingCond",
+                    "pattern": "pricing",
+                    "target": "pricingCond"
+                  },
+                  {
+                    "name": "myInbox",
+                    "pattern": "myInbox",
+                    "target": "myInbox"
+                  }
             ],
             "targets": {
-                "worklist": {
-                    "viewName": "Worklist",
-                    "viewId": "worklist",
-                    "viewLevel": 1,
-                    "title": "{i18n>worklistViewTitle}"
-                },
-                "object": {
-                    "viewName": "Object",
-                    "viewId": "object",
-                    "viewLevel": 2,
-                    "title": "{i18n>objectViewTitle}"
-                },
-                "objectNotFound": {
-                    "viewName": "ObjectNotFound",
-                    "viewId": "objectNotFound"
-                },
-                "notFound": {
-                    "viewName": "NotFound",
-                    "viewId": "notFound"
-                }
+                "TargetApp": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "App",
+                    "viewName": "App"
+                  },
+                  "vendorList": {
+                    "viewName": "VendorList",
+                    "viewType": "XML",
+                    "viewId": "VendorList",
+                    "clearControlAggregation": false,
+                    "transition": "show"
+                  },
+                  "pricingCond": {
+                    "viewName": "PricingCond",
+                    "viewType": "XML",
+                    "viewId": "PricingCond",
+                    "clearControlAggregation": false,
+                    "transition": "show"
+                  },
+                  "myInbox": {
+                    "viewName": "MyInbox",
+                    "viewType": "XML",
+                    "viewId": "MyInbox",
+                    "clearControlAggregation": false,
+                    "transition": "show"
+                  },
+                  "search": {
+                    "viewName": "Search",
+                    "viewType": "XML",
+                    "viewId": "Search",
+                    "clearControlAggregation": false,
+                    "transition": "show"
+                  }
             }
         },
         "rootView": {

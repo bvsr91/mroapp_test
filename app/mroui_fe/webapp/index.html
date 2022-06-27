@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>MRO E-Catalog</title>
     <style>
-        html, body, body > div, #container, #container-uiarea {
+        html,
+        body,
+        body>div,
+        #container,
+        #container-uiarea {
             height: 100%;
         }
     </style>
-    <script
-        id="sap-ui-bootstrap"
+    <script>
+        window["sap-ushell-config"] = {
+            defaultRenderer: "fiori2",
+            applications: {
+                "MroApp-display": {
+                    additionalInformation: "SAPUI5.Component=com.ferre.mrouife",
+                    applicationType: "URL",
+                    url: "../webapp",
+                    description: "App",
+                    title: "MRO E_Catalog"
+                }
+            }
+        };
+    </script>
+    <script src="https://sapui5.hana.ondemand.com/test-resources/sap/ushell/bootstrap/sandbox.js"
+        id="sap-ushell-bootstrap">
+        </script>
+    <script id="sap-ui-bootstrap" 
         src="https://sapui5.hana.ondemand.com/1.102.1/resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_belize"
-        data-sap-ui-resourceroots='{
-            "com.ferre.mrouife": "./"
-        }'
-        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-        data-sap-ui-compatVersion="edge"
-        data-sap-ui-async="true"
-        data-sap-ui-frameOptions="trusted"
-    ></script>
+        data-sap-ui-libs="sap.ushell, sap.collaboration" 
+        data-sap-ui-theme="sap_fiori_3"
+        data-sap-ui-compatVersion="edge" 
+        data-sap-ui-resourceroots='{"com.ferre.mrouife": "../"}'
+        data-sap-ui-frameOptions='allow'>
+        </script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            sap.ushell.Container.createRenderer().placeAt("content");
+        });
+    </script>
 </head>
+
 <body class="sapUiBody sapUiSizeCompact" id="content">
-    <div
+    <!-- <div
         data-sap-ui-component
         data-name="com.ferre.mrouife"
         data-id="container"
         data-settings='{"id" : "com.ferre.mrouife"}'
         data-handle-validation="true"
-    ></div>
+    ></div> -->
 </body>
+
 </html>

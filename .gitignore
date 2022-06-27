@@ -31,3 +31,5 @@ mta_archives/
 
 # auto generated wildcard
 mroapp/db/.env
+# auto generated wildcard
+mroapp_test/db/.env

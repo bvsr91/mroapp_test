@@ -1,0 +1,124 @@
+<mvc:View controllerName="com.ferre.mrouife.controller.VendorList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified">
+    <Page showHeader="false" enableScrolling="true" class="sapUiNoContentPadding" showNavButton="false">
+        <content>
+            <Table id="idVLTData" alternateRowColors="true" items="{
+                path: 'vendorData>/vendorListData'
+                }" sticky="ColumnHeaders,HeaderToolbar" popinLayout="GridSmall" 
+                contextualWidth="Auto"
+                growing="true"
+                growingThreshold="10">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title hAlign="center" text="Vendor List Table" level="H1"/>
+                        <ToolbarSpacer/>
+                        <SearchField liveChange=".onSearch" width="20%" />
+                        <Button tooltip="Add" icon="sap-icon://add" type="Transparent" press="handleAddVendorDetails"/>
+                        <!-- <Button tooltip="settings" icon="sap-icon://action-settings" type="Transparent" press="handleFilterButtonPressed"/> -->
+                        <u:FileUploader id="idFuGCDealer" icon="sap-icon://upload" tooltip="Upload your file" style="Emphasized" sameFilenameAllowed="true" buttonText="Upload" buttonOnly="true" fileType="XLSX,xlsx" change="onUpload">
+                        </u:FileUploader>
+                        <Button tooltip="Export to Excel" icon="sap-icon://excel-attachment" type="Transparent" press="onPressExport">
+                            <customData>
+                                <core:CustomData key="vend" />
+                            </customData>
+                        </Button>
+                        <!-- <Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/> -->
+                        <!-- <ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu" /> -->
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column >
+                        <header>
+                            <Text text="Manufacturer Code" />
+                        </header>
+                    </Column>
+                    <!-- <Column >
+                        <header>
+                            <Text text="Manufacturer Desc" />
+                        </header>
+                    </Column> -->
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Local Dealer Code" />
+                        </header>
+                    </Column>
+                    <!-- <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Local Dealer Desc" />
+                        </header>
+                    </Column> -->
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Purchase Org" />
+                        </header>
+                    </Column>
+                    <!-- <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Purchase Org Desc" />
+                        </header>
+                    </Column> -->
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Payment Terms" />
+                        </header>
+                    </Column>
+                    <!-- <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Payment Terms Desc" />
+                        </header>
+                    </Column> -->
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Creation Date"/>
+                        </header>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="End Date" />
+                        </header>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Status" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="Action" />
+                        </header>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <!-- <Text text="{vendorData>manufacturerCode}" wrapping="true"/>
+                            <Text text="{vendorData>manufacturerDesc}" wrapping="false"/> -->
+                            <ObjectIdentifier title="{vendorData>manufacturerDesc}" text="{vendorData>manufacturerCode}" />
+                            <!-- <Text text="{vendorData>localDealerManufacturerCode}" wrapping="false"/>
+                            <Text text="{vendorData>localDealerMaufacturerDesc}" wrapping="false"/> -->
+                            <ObjectIdentifier title="{vendorData>localDealerMaufacturerDesc}" text="{vendorData>localDealerManufacturerCode}" />
+                            <!-- <Text text="{vendorData>purchasingOrganization}" wrapping="false"/>
+                            <Text text="{vendorData>purchasingOrganizationDesc}" wrapping="false"/> -->
+                            <ObjectIdentifier title="{vendorData>purchasingOrganizationDesc}" text="{vendorData>purchasingOrganization}" />
+                            <!-- <Text text="{vendorData>paymentTerms}" wrapping="false"/>
+                            <Text text="{vendorData>paymentTermDesc}" wrapping="false"/> -->
+                            <ObjectIdentifier title="{vendorData>paymentTermDesc}" text="{vendorData>paymentTerms}" />
+                            <Text text="{vendorData>creationDate}" wrapping="true"/>
+                            <Text text="{vendorData>latestDate}" wrapping="true"/>
+                            <ObjectStatus text="{vendorData>status}" state="{ path: 'vendorData>status', formatter: '.formatter.statusState' }"/>
+                            <HBox>
+                                <core:Icon src="sap-icon://horizontal-grip" press="onLinksDownload"/>
+                                <Link text="Details" press="onDetailPress" class="sapUiSmallMarginBegin"/>
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
