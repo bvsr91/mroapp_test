@@ -34,6 +34,8 @@ module.exports = async function () {
                 result = await SELECT.from(User_Approve_Maintain).where({ userid: req.user.id });
                 if (result.length > 0 && result[0].managerid !== "") {
                     req.data.approver = result[0].managerid;
+                    req.data.initiator = req.user.id;
+                    req.data.Status = "Pending";
                 } else {
                     req.error(500, "Approver not maintained for the user: " + req.user.id);
                 }
@@ -62,6 +64,8 @@ module.exports = async function () {
                 result = await SELECT.from(User_Approve_Maintain).where({ userid: req.user.id });
                 if (result.length > 0 && result[0].managerid !== "") {
                     req.data.approver = result[0].managerid;
+                    req.data.initiator = req.user.id;
+                    req.data.Status = "Pending";
                 } else {
                     req.error(500, "Approver not maintained for the user: " + req.user.id);
                 }

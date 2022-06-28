@@ -6,8 +6,9 @@
     xmlns:l="sap.ui.layout"
     xmlns:u="sap.ui.unified"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-	xmlns:smartTable="sap.ui.comp.smarttable">
-    <Page showHeader="false" enableScrolling="true" class="sapUiNoContentPadding" showNavButton="false">
+	xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:t="sap.ui.table">
+    <Page showHeader="false" enableScrolling="false" class="sapUiNoContentPadding" showNavButton="false">
         <content>
             <Panel expandable="true" headerText="Filter Bar" class="sapUiNoContentPadding">
                 <content>
@@ -21,9 +22,27 @@
                 useTablePersonalisation="true" header="Vendor List Items"
                 showRowCount="true" useVariantManagement="false"
                 enableAutoBinding="true" class="sapUiResponsiveContentPadding"
-                tableType="ResponsiveTable" demandPopin="true" enableAutoColumnWidth="true" 
+                tableType="Table" enableAutoColumnWidth="true" 
                 initiallyVisibleFields="manufacturerCode,manufacturerCodeDesc,localManufacturerCode,localManufacturerCodeDesc,
-                    country,countryDesc"/>
+                    country,countryDesc"
+                ignoredFields="uuid" requestAtLeastFields="uuid">
+            <t:Table id="idUiTab" visibleRowCount="10">
+                <!-- <t:columns>
+
+                </t:columns>
+                <t:rowActionTemplate>
+	                <t:RowAction>
+                        <t:RowActionItem press="onSelectPriceGroup"	type="Navigation" icon="sap-icon://feeder-arrow" />
+	                </t:RowAction>
+                </t:rowActionTemplate> -->
+            </t:Table> 
+            <smartTable:customToolbar>
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://add" tooltip="Add new record" press=".handleAddVendor" />
+                </OverflowToolbar>
+            </smartTable:customToolbar>
+        </smartTable:SmartTable>
         </content>
     </Page>
 </mvc:View>

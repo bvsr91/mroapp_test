@@ -9,6 +9,9 @@ sap.ui.define(
         "sap/ui/Device",
         "sap/ui/core/Fragment",
         "sap/m/MessageBox",
+        "sap/ui/table/RowAction",
+        "sap/ui/table/RowActionItem",
+        "sap/ui/table/RowSettings",
         "../model/formatter",
     ],
     function (
@@ -21,6 +24,9 @@ sap.ui.define(
         Device,
         Fragment,
         MessageBox,
+        RowAction,
+        RowActionItem,
+        RowSettings,
         formatter
     ) {
         "use strict";
@@ -44,7 +50,8 @@ sap.ui.define(
                 var oModel = this.getOwnerComponent().getModel("mrosrv_v2")
                 this.getView().setModel(oModel);
                 this.getView().byId("vendSmartTab").rebindTable();
-                this.createRecord();
+                // this.createRecord();
+                this.extendTable();
             },
 
             /* =========================================================== */
@@ -392,6 +399,104 @@ sap.ui.define(
                         console.log(error);
                     }
                 });
+            },
+            handleAddVendor: function () {
+                if (!this._DialogAddVendor) {
+                    this._DialogAddVendor = sap.ui.xmlfragment(
+                        this.createId("FrgAddVendorData"),
+                        "com.ferre.mrouife.view.fragments.AddVendorForm",
+                        this
+                    );
+                    this.getView().addDependent(this._DialogAddVendor);
+                }
+                this._DialogAddVendor.open();
+            },
+            onCloseVendor: function () {
+                if (this._DialogAddVendor) {
+                    this._DialogAddVendor.close();
+                    this._DialogAddVendor.destroy(true);
+                    this._DialogAddVendor = undefined;
+                }
+            },
+            onSaveNewVendorData: function () {
+                var manufacturerCode = this.byId(sap.ui.core.Fragment.createId("FrgAddVendorData", "idIpManf")).getValue();
+                var manufacturerDesc = this.byId(sap.ui.core.Fragment.createId("FrgAddVendorData", "idIpManfDesc")).getValue();
+                var localDealerManufacturerCode = this.byId(sap.ui.core.Fragment.createId("FrgAddVendorData", "idIpLocalManf")).getValue();
+                var localDealerMaufacturerDesc = this.byId(sap.ui.core.Fragment.createId("FrgAddVendorData", "idIpLocalManfDesc")).getValue();
+                var country = this.byId(sap.ui.core.Fragment.createId("FrgAddVendorData", "idIpCountry")).getValue();
+                var countryDesc = this.byId(sap.ui.core.Fragment.createId("FrgAddVendorData", "idIpCountryDesc")).getValue();
+
+                var oPayLoad = {};
+                oPayLoad.manufacturerCode = manufacturerCode;
+                oPayLoad.localManufacturerCode = localDealerManufacturerCode;
+                oPayLoad.country = country;
+                oPayLoad.countryDesc = countryDesc;
+                oPayLoad.manufacturerCodeDesc = manufacturerDesc;
+                oPayLoad.localManufacturerCodeDesc = localDealerMaufacturerDesc;
+
+                var oModel = this.getOwnerComponent().getModel("mrosrv_v2");
+                this.getView().setBusy(true);
+                oModel.create("/VendorList", oPayLoad, {
+                    success: function (oData) {
+                        console.log(oData);
+                        this.onCloseVendor();
+                        this.getView().setBusy(false);
+                        MessageBox.success("Record created successfully");
+                    }.bind(this),
+                    error: function (error) {
+                        console.log(error);
+                        var errorObj1 = JSON.parse(error.responseText).error.message;
+                        MessageBox.show(
+                            errorObj1.value,
+                            sap.m.MessageBox.Icon.ERROR,
+                            "Error In Create Operation"
+                        );
+                        this.getView().setBusy(false);
+                    }.bind(this)
+                });
+            },
+            extendTable: function () {
+                var oTable = this.byId("idUiTab");
+                var fnPress = this.handleActionPress.bind(this);
+                var oTemplate = oTable.getRowActionTemplate();
+                if (oTemplate) {
+                    oTemplate.destroy();
+                    oTemplate = null;
+                }
+                var iCount;
+                this.modes = [
+                    {
+                        key: "Multi",
+                        text: "Multiple Actions",
+                        handler: function () {
+                            var oTemplate = new RowAction({
+                                items: [
+                                    // new RowActionItem({ icon: "sap-icon://attachment", text: "Attachment", press: fnPress }),
+                                    // new RowActionItem({ icon: "sap-icon://edit", text: "Edit", press: fnPress }),
+                                    new RowActionItem({ icon: "sap-icon://edit", text: "Edit", press: fnPress }),
+                                    new RowActionItem({ text: "Delete", press: fnPress, type: sap.ui.table.RowActionType.Delete })
+                                ]
+                            });
+                            return [2, oTemplate];
+                        }
+                    }
+                ];
+                for (var i = 0; i < this.modes.length; i++) {
+                    if ("Multi" == this.modes[i].key) {
+                        var aRes = this.modes[i].handler();
+                        iCount = aRes[0];
+                        oTemplate = aRes[1];
+                        break;
+                    }
+                }
+                oTable.setRowActionTemplate(oTemplate);
+                oTable.setRowActionCount(iCount);
+            },
+            handleActionPress: function (oEvent) {
+                var oRow = oEvent.getParameter("row");
+                var oItem = oEvent.getParameter("item");
+                sap.m.MessageToast.show("Item " + (oItem.getText() || oItem.getType()) + " pressed for product with id " +
+                    oRow.getBindingContext().getObject().manufacturerCode);
             }
         });
     }

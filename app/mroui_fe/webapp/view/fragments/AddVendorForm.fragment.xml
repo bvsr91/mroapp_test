@@ -3,69 +3,58 @@
     xmlns:semantic="sap.f.semantic"
     xmlns:footerbar="sap.ushell.ui.footerbar"
     xmlns:core="sap.ui.core">
-    <Dialog id="myDialog" title="New Vendor Record .." contentHeight="35%" contentWidth="65%">
+    <Dialog id="myDialog" title="New Vendor" contentHeight="35%" contentWidth="60%">
         <content>
-            <VBox class="sapUiSmallMargin">
+            <!-- <VBox class="sapUiSmallMargin"> -->
                 <f:Form id="SimpleFormToolbarAdd" editable="true">
                     <f:layout>
-                        <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false" />
+                        <f:ResponsiveGridLayout labelSpanXL="5" labelSpanL="7" labelSpanM="7" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false" />
                     </f:layout>
                     <f:formContainers>
                         <f:FormContainer>
                             <f:formElements>
                                 <f:FormElement label="Manufacturer Code">
                                     <f:fields>
-                                        <Input id="manufacturerCodeId" />
+                                        <Input id="idIpManf" />
                                     </f:fields>
                                 </f:FormElement>
                                 <f:FormElement label="Manufacturer Code Desc">
                                     <f:fields>
-                                        <Input id="manufacturerDescId" />
+                                        <Input id="idIpManfDesc" />
                                     </f:fields>
                                 </f:FormElement>
                                 <f:FormElement label="Local Dealer Manufacturer">
                                     <f:fields>
-                                        <Input id="localDealerManufacturerCodeId" />
+                                        <Input id="idIpLocalManf" />
                                     </f:fields>
                                 </f:FormElement>
                                 <f:FormElement label="Local Dealer Manufacturer Desc">
                                     <f:fields>
-                                        <Input id="localDealerMaufacturerDescId" />
+                                        <Input id="idIpLocalManfDesc" />
                                     </f:fields>
                                 </f:FormElement>
-
                             </f:formElements>
                         </f:FormContainer>
                         <f:FormContainer>
                             <f:formElements>
-                                <f:FormElement label="Purchasing Org">
+                                <f:FormElement label="Country">
                                     <f:fields>
-                                        <Input id="purchasingOrganizationId"/>
+                                        <Input id="idIpCountry"/>
                                     </f:fields>
                                 </f:FormElement>
-                                <f:FormElement label="Purchasing Org Desc">
+                                <f:FormElement label="Country Desc">
                                     <f:fields>
-                                        <Input id="purchasingOrganizationDescId"/>
-                                    </f:fields>
-                                </f:FormElement>
-                                <f:FormElement label="Payment Terms">
-                                    <f:fields>
-                                        <Input id="paymentTermsId"/>
-                                    </f:fields>
-                                </f:FormElement>
-                                <f:FormElement label="Payment Term Desc">
-                                    <f:fields>
-                                        <Input id="paymentTermDescId"/>
+                                        <Input id="idIpCountryDesc"/>
                                     </f:fields>
                                 </f:FormElement>
                             </f:formElements>
                         </f:FormContainer>
                     </f:formContainers>
                 </f:Form>
-            </VBox>
+            <!-- </VBox> -->
         </content>
         <buttons>
-            <Button text="Save" type="Emphasized" press=".onaddVendorData"/>
+            <Button text="Save" type="Emphasized" press=".onSaveNewVendorData"/>
             <Button text="Cancel" press="onCloseVendor" type="Emphasized"/>
         </buttons>
     </Dialog>
