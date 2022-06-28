@@ -44,6 +44,7 @@ sap.ui.define(
                 var oModel = this.getOwnerComponent().getModel("mrosrv_v2")
                 this.getView().setModel(oModel);
                 this.getView().byId("vendSmartTab").rebindTable();
+                this.createRecord();
             },
 
             /* =========================================================== */
@@ -371,6 +372,27 @@ sap.ui.define(
 
                 oBinding.filter(aFilters, "Application");
             },
+            createRecord: function () {
+                var oModel = this.getOwnerComponent().getModel("mrosrv_v2");
+                var oPayLoad = {
+                    manufacturerCode: "1000101",
+                    localManufacturerCode: "L120944",
+                    country: "IN",
+                    countryDesc: "India"
+                    // manufacturerCodeDesc: "Test1"
+                    // localManufacturerCodeDesc: "LM123"
+                    // ,
+                    // "uuid": "8HEXDIG4HEXDIG4HEXDIG4HEXDIG12HEXDIG"
+                };
+                oModel.create("/VendorList", oPayLoad, {
+                    success: function (oData) {
+                        console.log(oData);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
         });
     }
 );

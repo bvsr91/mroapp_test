@@ -70,6 +70,7 @@ sap.ui.define([
                     if (oData.results.length === 0) {
                         this.showNotFound();
                     } else {
+                        this.getModel("userModel").setProperty("/isExpanded", true);
                         if (this.getRouter().getHashChanger().getHash() === "notFound") {
                             this.getRouter().navTo("search");
                         }
@@ -82,6 +83,8 @@ sap.ui.define([
             });
         },
         showNotFound: function () {
+            // sap.ui.getCore().byId("idSN").setExpanded(false);
+            this.getModel("userModel").setProperty("/isExpanded", false);
             this.getModel("side").setProperty("/navigation", []);
             this.getRouter().navTo("notFound");
             // var sPath = "com.ferre.mrouife.view.fragments.notFound";

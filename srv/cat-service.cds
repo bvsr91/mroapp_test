@@ -7,8 +7,8 @@ service MroService @(impl:'./cat-service.js'){
     entity Users             as projection on my.Users_Role_Assign;
 
     entity MaintainApproval  as projection on my.User_Approve_Maintain;
-    entity VendorList        as projection on my.Vendor_List;
-    entity PricingConditions as projection on my.Pricing_Conditions;
+    entity VendorList        as projection on my.Vendor_List_1;
+    entity PricingConditions as projection on my.Pricing_Conditions_1;
 
     @readonly
     entity CheckUserRole as projection on my.Users_Role_Assign;

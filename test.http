@@ -1,3 +1,20 @@
 ## Get users 
 
 GET https://port4004-workspaces-ws-lmtwl.us10.trial.applicationstudio.cloud.sap/v2/mro/CheckUserRole('Srini')
+
+
+
+## create
+
+
+POST https://port4004-workspaces-ws-lmtwl.us10.trial.applicationstudio.cloud.sap/v2/mro/VendorList
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "manufacturerCode":"1000101",
+    "localManufacturerCode":"L120944",
+    "country":"IN",
+    "countryDesc":"India",
+    "manufacturerCodeDesc":"Test1",
+    "localManufacturerCodeDesc":"LM123"
+}

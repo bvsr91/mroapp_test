@@ -9,17 +9,21 @@
 	xmlns:smartTable="sap.ui.comp.smarttable">
     <Page showHeader="false" enableScrolling="true" class="sapUiNoContentPadding" showNavButton="false">
         <content>
-    <smartFilterBar:SmartFilterBar id="smartFilterBar"
-		entitySet="VendorList" useVariantManagement="false"/>
+            <Panel expandable="true" headerText="Filter Bar" class="sapUiNoContentPadding">
+                <content>
+                    <smartFilterBar:SmartFilterBar id="smartFilterBar"
+                        entitySet="VendorList" useVariantManagement="false"/>
+                </content>
+            </Panel>
 
-	<smartTable:SmartTable entitySet="VendorList" id="vendSmartTab"
-		smartFilterId="smartFilterBar" useExportToExcel="true" beforeExport="onBeforeExport"
-		useTablePersonalisation="true" header="Vendor List Items"
-		showRowCount="true" useVariantManagement="false"
-		enableAutoBinding="true" class="sapUiResponsiveContentPadding"
-		tableType="ResponsiveTable" demandPopin="true" enableAutoColumnWidth="true" 
-        initiallyVisibleFields="manufacturerCode,manufacturerCodeDesc,localManufacturerCode,localManufacturerCodeDesc,
-            country,countryDesc"/>
-     </content>
+            <smartTable:SmartTable entitySet="VendorList" id="vendSmartTab"
+                smartFilterId="smartFilterBar" useExportToExcel="true" beforeExport="onBeforeExport"
+                useTablePersonalisation="true" header="Vendor List Items"
+                showRowCount="true" useVariantManagement="false"
+                enableAutoBinding="true" class="sapUiResponsiveContentPadding"
+                tableType="ResponsiveTable" demandPopin="true" enableAutoColumnWidth="true" 
+                initiallyVisibleFields="manufacturerCode,manufacturerCodeDesc,localManufacturerCode,localManufacturerCodeDesc,
+                    country,countryDesc"/>
+        </content>
     </Page>
 </mvc:View>

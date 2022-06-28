@@ -61,11 +61,11 @@ sap.ui.define(
         },
         toolPageExpanded: function (bVal) {
           this.getOwnerComponent()
-            .getModel("visibility")
+            .getModel("userModel")
             .setProperty("/isExpanded", bVal);
         },
         determineVisibilityBasedOnRole: function () {
-          var oVisibleModel = this.getOwnerComponent().getModel("visibility");
+          var oVisibleModel = this.getOwnerComponent().getModel("userModel");
           var oVisibleData = oVisibleModel.getData();
           var bCudVisible = false,
             sRoleName;

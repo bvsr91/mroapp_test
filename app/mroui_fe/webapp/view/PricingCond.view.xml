@@ -4,101 +4,26 @@
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f"
     xmlns:l="sap.ui.layout"
-    xmlns:u="sap.ui.unified">
+    xmlns:u="sap.ui.unified"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable">
     <Page showHeader="false" enableScrolling="true" class="sapUiNoContentPadding" showNavButton="false">
         <content>
-            <Table id="idPLTData" alternateRowColors="true" items="{
-                path: 'pricingData>/pricingConditionData'
-                }" sticky="ColumnHeaders,HeaderToolbar">
-                <headerToolbar>
-                    <OverflowToolbar>
-                        <Title hAlign="center" text="Pricing Conditions Table" level="H1"/>
-                        <ToolbarSpacer/>
-                        <SearchField liveChange=".onSearch" width="20%" />
-                        <Button tooltip="Add" icon="sap-icon://add" type="Transparent" press="handleAddPricingDetails"/>
-                        <u:FileUploader id="idFuGCDealer" icon="sap-icon://upload" tooltip="Upload your file" style="Emphasized" sameFilenameAllowed="true" buttonText="Upload" buttonOnly="true" fileType="XLSX,xlsx" change="onUpload">
-                        </u:FileUploader>
-                        <Button tooltip="Export to Excel" icon="sap-icon://excel-attachment" type="Transparent" press="onPressExport">
-                            <customData>
-                                <core:CustomData key="pricing" />
-                            </customData>
-                        </Button>
-                    </OverflowToolbar>
-                </headerToolbar>
-                <columns>
-                    <Column>
-                        <Text text="Manufacturer Code" />
-                    </Column>
-                    <!-- <Column width="8em">
-                        <Text text="Manufacturer Desc" />
-                    </Column> -->
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Country" />
-                    </Column>
-                    <!-- <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Country Code" wrapping="true"/>
-                    </Column> -->
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Plant" />
-                    </Column>
-                    <!-- <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Plant Desc" />
-                    </Column> -->
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Exchange Rate" />
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Country Factory" />
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Validity Start" />
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Validity End" />
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Local Ownership" />
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Creation Date"/>
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="End Date" />
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Status" />
-                    </Column>
-                    <Column>
-                        <Text text="Action" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem >
-                        <cells>
-                            <!-- <Text text="{pricingData>manufacturerCode}"/>
-                            <Text text="{pricingData>manufacturerDesc}"/> -->
-                            <ObjectIdentifier title="{pricingData>manufacturerDesc}" text="{pricingData>manufacturerCode}" />
-                            <!-- <Text text="{pricingData>country} ({pricingData>countryCode})"/> -->
-                            <Text text="{parts: [{path:'pricingData>country'}, {path:'pricingData>countryCode'}], formatter: '.formatter.countryFormat'}"/>
-                            <!-- <Text text="{pricingData>plant}"/>
-                            <Text text="{pricingData>plantDescription}"/> -->
-                            <ObjectIdentifier title="{pricingData>plantDescription}" text="{pricingData>plant}" />
-                            <Text text="{pricingData>exchangeRate}"/>
-                            <Text text="{pricingData>countryFactor}"/>
-                            <Text text="{pricingData>validityStart}"/>
-                            <Text text="{pricingData>validityEnd}"/>
-                            <Text text="{=${pricingData>localOwnership} === true ? 'Yes' : 'No'}"/>
-                            <Text text="{pricingData>creationDate}"/>
-                            <Text text="{pricingData>latestDate}"/>
-                            <ObjectStatus text="{pricingData>status}" state="{ path: 'pricingData>status', formatter: '.formatter.statusState' }"/>
-                            <HBox>
-                                <core:Icon src="sap-icon://horizontal-grip" press="onLinksDownload" />
-                                <Link text="Details" press="onDetailPress" class="sapUiSmallMarginBegin"/>
-                            </HBox>
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
+            <Panel expandable="true" headerText="Filter Bar" class="sapUiNoContentPadding">
+                <content>
+                    <smartFilterBar:SmartFilterBar id="smartFilterBar"
+                        entitySet="PricingConditions" useVariantManagement="false"/>
+                </content>
+            </Panel>
+
+            <smartTable:SmartTable entitySet="PricingConditions" id="priceSmartTab"
+                smartFilterId="smartFilterBar" useExportToExcel="true" beforeExport="onBeforeExport"
+                useTablePersonalisation="true" header="Vendor List Items"
+                showRowCount="true" useVariantManagement="false"
+                enableAutoBinding="true" class="sapUiResponsiveContentPadding"
+                tableType="ResponsiveTable" demandPopin="true" enableAutoColumnWidth="true" 
+                initiallyVisibleFields="manufacturerCode,manufacturerCodeDesc,localManufacturerCode,localManufacturerCodeDesc,
+                    country,countryDesc"/>
         </content>
     </Page>
 </mvc:View>

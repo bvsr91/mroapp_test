@@ -3,7 +3,7 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
     xmlns:tnt="sap.tnt">
-    <tnt:ToolPage id="app" sideExpanded="{visibility>/isExpanded}" class="sapUiNoMarginBegin sapUiResponsivePadding">
+    <tnt:ToolPage id="app" sideExpanded="{userModel>/isExpanded}" class="sapUiNoMarginBegin sapUiResponsivePadding">
         <tnt:header>
             <tnt:ToolHeader>
                 <Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress" tooltip="{i18n>collpaseMenuButtonText}">
@@ -24,7 +24,7 @@
             </tnt:ToolHeader>
         </tnt:header>
         <tnt:sideContent class="sapUiResponsivePadding">
-            <tnt:SideNavigation id="idSN" expanded="{visibility>/isExpanded}" selectedKey="{side>/selectedKey}" itemSelect=".onItemSelect">
+            <tnt:SideNavigation id="idSN" expanded="{userModel>/isExpanded}" selectedKey="{side>/selectedKey}" itemSelect=".onItemSelect">
                 <tnt:item>
                     <tnt:NavigationList items="{
 						path: 'side>/navigation'
