@@ -1,5 +1,9 @@
 using MroService from './cat-service';
 
+// annotate MroService.VendorList with {
+//     manufacturerCode 
+// }
+
 annotate MroService.VendorList with @UI.LineItem : {$value : [
     {
         $Type             : 'UI.DataField',

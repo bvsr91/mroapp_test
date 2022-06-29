@@ -495,8 +495,30 @@ sap.ui.define(
             handleActionPress: function (oEvent) {
                 var oRow = oEvent.getParameter("row");
                 var oItem = oEvent.getParameter("item");
-                sap.m.MessageToast.show("Item " + (oItem.getText() || oItem.getType()) + " pressed for product with id " +
-                    oRow.getBindingContext().getObject().manufacturerCode);
+                if (oItem.getType() === "Delete") {
+                    this.onDelete(oEvent);
+                }
+                // sap.m.MessageToast.show("Item " + (oItem.getText() || oItem.getType()) + " pressed for product with id " +
+                //     oRow.getBindingContext().getObject().manufacturerCode);
+            },
+            onDelete: function (oEvent) {
+                var oModel = this.getOwnerComponent().getModel("mrosrv_v2");
+                this.getView().setBusy(true);
+                oModel.remove(oEvent.getParameter("row").getBindingContext().sPath, {
+                    success: function (oData) {
+                        this.getView().setBusy(false);
+                        MessageBox.success("Record Deleted successfully");
+                    }.bind(this),
+                    error: function (error) {
+                        this.getView().setBusy(false);
+                        var errorObj1 = JSON.parse(error.responseText).error.message;
+                        MessageBox.show(
+                            errorObj1.value,
+                            sap.m.MessageBox.Icon.ERROR,
+                            "Error In Create Operation"
+                        );
+                    }.bind(this)
+                });
             }
         });
     }
