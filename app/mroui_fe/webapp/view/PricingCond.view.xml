@@ -15,15 +15,15 @@
                         entitySet="PricingConditions" useVariantManagement="false"/>
                 </content>
             </Panel>
-
-            <smartTable:SmartTable entitySet="PricingConditions" id="priceSmartTab"
-                smartFilterId="smartFilterBar" useExportToExcel="true" beforeExport="onBeforeExport"
-                useTablePersonalisation="true" header="Vendor List Items"
-                showRowCount="true" useVariantManagement="false"
-                enableAutoBinding="true" class="sapUiResponsiveContentPadding"
-                tableType="ResponsiveTable" demandPopin="true" enableAutoColumnWidth="true" 
-                initiallyVisibleFields="manufacturerCode,manufacturerCodeDesc,localManufacturerCode,localManufacturerCodeDesc,
-                    country,countryDesc"/>
+        <smartTable:SmartTable id="priceSmartTab" entitySet="PricingConditions" smartFilterId="smartFilterBar" tableType="ResponsiveTable"
+		useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="false" enableAutoColumnWidth="true"
+		useTablePersonalisation="true" header="Pricing Conditions" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored"
+		enableAutoBinding="true" demandPopin="true" class="sapUiResponsiveContentPadding" 
+        showDetailsButton="true" detailsButtonSetting="Medium,Low"
+        initiallyVisibleFields="ManufacturerCode,manufacturerCodeDesc,localManufacturerCode,localManufacturerCodeDesc,
+                    country,countryDesc"
+        showFullScreenButton="false">
+        </smartTable:SmartTable>
         </content>
     </Page>
 </mvc:View>

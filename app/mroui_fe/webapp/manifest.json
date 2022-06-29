@@ -33,7 +33,14 @@
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
                 }
-            }
+            },
+			"annotation0": {
+				"uri": "annotations/annotation0.xml",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "annotations/annotation0.xml"
+				}
+			}
         }
     },
     "sap.ui": {
