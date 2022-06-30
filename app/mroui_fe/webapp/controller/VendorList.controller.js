@@ -473,7 +473,7 @@ sap.ui.define(
                                 items: [
                                     // new RowActionItem({ icon: "sap-icon://attachment", text: "Attachment", press: fnPress }),
                                     // new RowActionItem({ icon: "sap-icon://edit", text: "Edit", press: fnPress }),
-                                    new RowActionItem({ icon: "sap-icon://edit", text: "Edit", press: fnPress }),
+                                    // new RowActionItem({ icon: "sap-icon://edit", text: "Edit", press: fnPress }),
                                     new RowActionItem({ text: "Delete", press: fnPress, type: sap.ui.table.RowActionType.Delete })
                                 ]
                             });

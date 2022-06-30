@@ -47,8 +47,8 @@ entity Pricing_Conditions_1 : managed {
         manufacturerCodeDesc : String(35)    @description : 'Manufacturer Desc'  @sap.label        : 'Manufacturer Desc';
         countryDesc          : String(15)    @description : 'Country Desc'  @sap.label             : 'Country Desc';
         LocalCurrency        : String(5)     @description : 'Local Currency'  @sap.label           : 'Local Currency';
-        ExchangeRate         : Decimal(2, 2) @description : 'Exchange Rate'  @sap.label            : 'Exchange Rate';
-        CountryFactor        : Decimal(2, 2) @description : 'Country Factor'  @sap.label           : 'Country Factor';
+        ExchangeRate         : Decimal(4, 2) @description : 'Exchange Rate'  @sap.label            : 'Exchange Rate';
+        CountryFactor        : Decimal(4, 2) @description : 'Country Factor'  @sap.label           : 'Country Factor';
         ValidityStart        : Date          @description : 'Validity Start Date'  @sap.label      : 'Validity Start Date';
         ValidityEnd          : Date          @description : 'Validity End Date'  @sap.label        : 'Validity End Date';
         initiator            : String        @description : 'Initiator'  @sap.label                : 'Initiator';

@@ -25,6 +25,9 @@ module.exports = async function () {
     this.before("INSERT", "PricingConditions", async (req, next) => {
         var logOnUser = req.user.id;
         try {
+            if (req.data.ManufacturerCode === "" || req.data.Country === "") {
+                req.error(500, "ManufacturerCode/Country are primary keys");
+            }
             var aCheckRecordExits = await SELECT.from(Pricing_Conditions_1).where('ManufacturerCode=', req.data.ManufacturerCode, 'and Country=', req.data.Country);
             if (aCheckRecordExits.length > 0) {
                 req.error(500, "record already exists with same data");
@@ -50,12 +53,12 @@ module.exports = async function () {
         return req;
     });
 
-    
+
     this.before("INSERT", "VendorList", async (req, next) => {
         var logOnUser = req.user.id;
         try {
             var aCheckRecordExits = await SELECT.from(Vendor_List_1).where('manufacturerCode=', req.data.manufacturerCode, 'and localManufacturerCode=', req.data.localManufacturerCode,
-            'and country=', req.data.country);
+                'and country=', req.data.country);
             if (aCheckRecordExits.length > 0) {
                 req.error(500, "record already exists with same data");
             }

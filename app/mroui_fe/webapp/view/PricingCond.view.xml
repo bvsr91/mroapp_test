@@ -23,6 +23,30 @@
         initiallyVisibleFields="ManufacturerCode,manufacturerCodeDesc,localManufacturerCode,localManufacturerCodeDesc,
                     country,countryDesc"
         showFullScreenButton="false">
+        <Table sticky="ColumnHeaders,HeaderToolbar" id="idPricingCondTab">
+            <columns>
+				<Column id="actions" hAlign="Center" importance="High" width="5rem">
+                    <customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "actions", "autoColumnWidth": true, "maxLength": 5,"columnIndex":5}' />
+					</customData>
+					<Text text="Actions" />
+				</Column>
+			</columns>
+            <items>
+				<ColumnListItem>
+					<cells>
+						<Button icon="sap-icon://overflow" press="onPressActions"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+        </Table>
+        <smartTable:customToolbar>
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://add" tooltip="Add new record" press=".handleAddPricing" />
+                </OverflowToolbar>
+        </smartTable:customToolbar>
         </smartTable:SmartTable>
         </content>
     </Page>
